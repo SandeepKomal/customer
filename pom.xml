@@ -1,13 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.naveen</groupId>
+    <artifactId>customer</artifactId>
+    <version>1.0.1</version>
+    <name>customer</name>
+    <description>Full stack application using Spring Boot and react</description>
+    <packaging>jar</packaging> <!-- Default packaging is JAR -->
+
+    <!-- Other configurations and dependencies -->
+
+    <!-- Profiles for JAR and WAR packaging -->
+    <profiles>
+        <!-- Profile for JAR packaging -->
+        <profile>
+            <id>jar-packaging</id>
+            <properties>
+                <build.outputDirectory>${project.build.directory}/jar-output</build.outputDirectory>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>3.2.0</version>
+                        <configuration>
+                            <finalName>${project.artifactId}</finalName>
+                            <outputDirectory>${build.outputDirectory}</outputDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-jar</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <!-- Profile for WAR packaging -->
+        <profile>
+            <id>war-packaging</id>
+            <properties>
+                <build.outputDirectory>${project.build.directory}/war-output</build.outputDirectory>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>3.2.3</version>
+                        <configuration>
+                            <warName>${project.artifactId}</warName>
+                            <outputDirectory>${build.outputDirectory}</outputDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>default-war</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>war</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
 	
 	<groupId>com.naveen</groupId>
 	<artifactId>customer</artifactId>
